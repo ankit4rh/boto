@@ -12,4 +12,7 @@ bot uses the configuratio n file created by the AWS cli eg.
 `aws configure --profile boto`
 
 ## Running
-`pipenv run python boto/boto.py`
+`pipenv run python boto/boto.py <command> <--project=Project>`
+
+*command* is list, start, or stop
+*project* is optional 
