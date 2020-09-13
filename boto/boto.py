@@ -1,7 +1,7 @@
 import boto3
 import click
 
-session = boto3.Session(profile_name='boto')
+session = boto3.Session(profile_name='eva')
 ec2 = session.resource('ec2')
 
 def filter_instances(project):
@@ -15,6 +15,14 @@ def filter_instances(project):
     return instances
 
 @click.group()
+def cli():
+    """Eva manages snapshots"""
+
+@cli.group('volumes')
+def volumes():
+    """Commands for Volumes"""
+
+@cli.group('instances')
 def instances():
     """Commands for instances"""
 
@@ -68,7 +76,20 @@ def stop_instances(project):
         i.start()
     return
 
+@instances.command('reboot')
+@click.option('--project', default=None,
+    help='Only instances for project')
+def stop_instances(project):
+    "Reboot EC2 Instances"
+    instances = []
+
+    instances = filter_instances(project)
+
+    for i in instances:
+        print("Rebooting {0}...".format(i.id))
+        i.reboot()
+    return
 
 
 if __name__ == '__main__':
-    instances()
+    cli()
