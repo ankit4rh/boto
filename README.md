@@ -1,18 +1,26 @@
-# boto
+# eva
 
-Demo Project Tto  manage AWS instance snapshots
+Demo Project to manage AWS instance snapshots
 
 ## About
 
-This iproject is a demo, and uses boto3 to manage AWS EC2 instance snapshots
+This project is a demo, and uses boto3 to manage AWS EC2 instance snapshots
 
 ## Configure
 
-bot uses the configuratio n file created by the AWS cli eg.
-`aws configure --profile boto`
+Create the aws profile for eva
+`aws configure --profile eva`
+
+Navigate to project directory and install dependencies
+`pipenv install`
+
+Install development dependencies
+`pipenv install -d`
+
 
 ## Running
-`pipenv run python boto/boto.py <command> <--project=Project>`
+`pipenv run python boto/boto.py <command> <subcommand> <--project=Project>`
 
-*command* is list, start, or stop
-*project* is optional 
+*command* is instances, volumes, snapshots
+*subcommand* - depends on  command
+*project* is optional
